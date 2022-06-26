@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import Header from "./Header";
-import Technologies from "./Technologies";
+import {Body} from "./site/Body";
+import {Header} from "./site/Header";
 
 const App = () => {
     return (
         <div className="App">
             <Header/>
-            <Technologies/>
+            <Body/>
         </div>
     );
 }

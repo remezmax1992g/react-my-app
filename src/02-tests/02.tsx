@@ -1,18 +1,18 @@
-type CityType = {
+export type CityType = {
     title: string,
     countryTitle: string
 }
 
-type AddressType = {
+export type AddressType = {
     streetTitle: string,
     city: CityType
 }
 
-type TechType = {
+export type TechType = {
     id: number,
     title: string
 }
-type StudentType = {
+export type StudentType = {
     id: number,
     name: string,
     age: number,
@@ -44,7 +44,7 @@ const student = {
         },
         {
             id:3,
-            title: "JS ReactL"
+            title: "JS"
         }
         ]
 }
