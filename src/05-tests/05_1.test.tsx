@@ -1,5 +1,5 @@
 import {CityType} from "../02-tests/02_02";
-import {addMoneyToBudget, repairHouse, toFireStaff, toHireStaff} from "./03";
+import {createMesssagesForHouses, getStreetTitlesOfGovernmentBuildings, getStreetTitlesOfHouses} from "./05_1";
 
 
 let city:CityType;
@@ -69,26 +69,30 @@ beforeEach(() => {
     }
 )
 
-test("Budget should be changed for HOSPITAL", () => {
-    addMoneyToBudget(city.governmentBuildings[0], 100000);
-    expect(city.governmentBuildings[0].budget).toBe(300000);
+test("List of streets titles of government buildings", () => {
+    let streetNames = getStreetTitlesOfGovernmentBuildings (city.governmentBuildings);
+
+    expect(streetNames.length).toBe(2)
+    expect(streetNames[0]).toBe("Central street")
+    expect(streetNames[1]).toBe("South street")
+
+})
+test("List of streets titles of houses", () => {
+    let streetNames = getStreetTitlesOfHouses(city.houses);
+
+    expect(streetNames.length).toBe(3)
+    expect(streetNames[0]).toBe("Bogdanovicha")
+    expect(streetNames[1]).toBe("Nekrasova")
+    expect(streetNames[2]).toBe("Bogdanovicha")
+
 })
 
-test("Budget should be changed for FIRE_STATIONL", () => {
-    addMoneyToBudget(city.governmentBuildings[1], -100000);
-    expect(city.governmentBuildings[1].budget).toBe(400000);
-})
-test("House should be repaired", () => {
-    repairHouse(city.houses[1]);
-    expect(city.houses[1].repaired).toBeTruthy();
-})
+test("Create greeting messages for houses street", () => {
+    let messagesForHouses = createMesssagesForHouses(city.houses)
 
-test("Staff should be increased", () => {
-    toHireStaff(city.governmentBuildings[1], 20);
-    expect(city.governmentBuildings[1].staffCount).toBe(1020);
-})
+    expect(messagesForHouses.length).toBe(3)
+    expect(messagesForHouses[0]).toBe("Hello guys from Bogdanovicha")
+    expect(messagesForHouses[1]).toBe("Hello guys from Nekrasova")
+    expect(messagesForHouses[2]).toBe("Hello guys from Bogdanovicha")
 
-test("Staff should be decreased", () => {
-    toFireStaff(city.governmentBuildings[1], 20);
-    expect(city.governmentBuildings[1].staffCount).toBe(980);
 })
